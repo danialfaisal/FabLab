@@ -15,6 +15,12 @@ from .models import Subject, Course, Module, Content
 from .forms import ModuleFormSet
 from students.forms import CourseEnrollForm
 from django.core.cache import cache
+from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
+from django.contrib.auth.models import PermissionsMixin
 
 
 class OwnerMixin(object):
@@ -230,3 +236,5 @@ class CourseDetailView(DetailView):
         context['enroll_form'] = CourseEnrollForm(
                                    initial={'course':self.object})
         return context
+
+

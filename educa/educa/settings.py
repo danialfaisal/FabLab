@@ -43,7 +43,12 @@ INSTALLED_APPS = [
     'embed_video',
     'memcache_status',
     'rest_framework',
+    'social_django'
 ]
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect'
             ],
         },
     },
@@ -83,10 +90,10 @@ WSGI_APPLICATION = 'educa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfjpntv3v7gs9p',
-        'USER': 'sztzklkrsgmecj',
-        'PASSWORD': 'aeb685af731c839d75ceae17fa78e25f3fa974bde787a8ade07635e209e2b360',
-        'HOST': 'ec2-54-235-68-3.compute-1.amazonaws.com',
+        'NAME': 'd3q720d1sgtnt6',
+        'USER': 'knviwnpolowqoc',
+        'PASSWORD': '9d9cf4ca6eb3de4df096a426699a827556da2fa563586db24ec55c3e4bb8084e',
+        'HOST': 'ec2-54-243-208-234.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -139,7 +146,7 @@ STATICFILES_DIRS = (
 
 
 # Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 DATABASES['default'] = dj_database_url.config()
 
@@ -184,7 +191,21 @@ EMAIL_HOST_PASSWORD = 'your_password'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '612615452253-s84u3ebk5cn4scufnqiumqo5lagf6vqt.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'QThrD35QGGHdkJX47MU-eCva'
+
+
+
+
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
 try:
     from .local_settings import *
 except ImportError:
     pass
+
+
+
+

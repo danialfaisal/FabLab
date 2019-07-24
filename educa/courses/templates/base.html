@@ -3,25 +3,42 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>{% block title %}Educa{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <title>{% block title %}E-Learning{% endblock %}</title>
   <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 <body>
   <div id="header">
-    <a href="/" class="logo">Educa</a>
+    <div class="logo">
+                <a id="logo" title="E-Learning" class="navbar-brand" href="/" data-heigth="40" data-padding="32">
+                    <img id="logo_img" src="{% static "css/E-Learning.png" %}" style="color: orange" width="100px" height="50px"/>
+                </a>
+    </div>
+        <a class="navbar-brand mr-1" href="{% url "student_course_list" %}">My Courses</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
     <ul class="menu">
       {% if request.user.is_authenticated %}
         <li><a href="{% url "logout" %}">Sign out</a></li>
       {% else %}
         <li><a href="{% url "login" %}">Sign in</a></li>
+        <li><a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a></li>
       {% endif %}
+
     </ul>
   </div>
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
- 
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script>

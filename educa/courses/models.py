@@ -5,6 +5,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from .fields import OrderField
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
+from django.utils import timezone
 
 
 class Subject(models.Model):
@@ -103,3 +104,4 @@ class Image(ItemBase):
 
 class Video(ItemBase):
     url = models.URLField()
+

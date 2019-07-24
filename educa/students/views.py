@@ -8,6 +8,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from courses.models import Course
 from .forms import CourseEnrollForm
+from django.contrib.auth.decorators import login_required
 
 
 class StudentRegistrationView(CreateView):
@@ -38,7 +39,6 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
     def get_success_url(self):
         return reverse_lazy('student_course_detail',
                             args=[self.course.id])
-
 
 class StudentCourseListView(LoginRequiredMixin, ListView):
     model = Course
