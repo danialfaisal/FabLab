@@ -1,2 +1,2 @@
-web: gunicorn efs3.wsgi --log-file -
+web: gunicorn educa.wsgi --log-file -
 
